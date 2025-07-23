@@ -1,9 +1,14 @@
 from turtle import Turtle, Screen
 import turtle as t
 import colorgram
+import random
 
 FILENAME = 'damien.png'
 color_list = []
+
+
+def get_random_color(p_color_list):
+    return random.choice(p_color_list)
 
 
 def create_color_library(size):
@@ -13,11 +18,26 @@ def create_color_library(size):
     return arr
 
 
+def draw_circles(x_count, y_count, c_size, distance):
+    for y in range(y_count):
+        for x in range(x_count):
+            tim.color(get_random_color(color_list))
+            tim.dot(c_size)
+            tim.forward(distance)
+        tim.setx(0)
+        tim.sety(tim.ycor() + distance)
+
+
 tim = Turtle()
+tim.shape('circle')
+tim.speed('fastest')
+tim.hideturtle()
+
+t.colormode(255)
 color_list = create_color_library(10)
 
-print(color_list)
-
+tim.penup()
+draw_circles(10, 10, 20, 50)
 
 screen = Screen()
 screen.exitonclick()
